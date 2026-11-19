@@ -1,0 +1,8 @@
+# Datos originales: se descargan con data/descargar_datos.py
+data/*.csv
+data/*.xlsx
+data/*.zip
+
+# Python
+__pycache__/
+*.pyc

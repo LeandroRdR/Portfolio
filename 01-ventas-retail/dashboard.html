@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Quién sostiene las ventas de la tienda</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--ink:#1b2430;--mute:#5b6676;--line:#e4e7ec;--a:#2a6fdb;--soft:#c3cad5;--warn:#c0392b;--hl:#eaf1fd}
+@media (prefers-color-scheme:dark){:root{--bg:#10151c;--card:#171e28;--ink:#e8ecf2;--mute:#a1adbd;--line:#263041;--a:#5b94f0;--soft:#3a4558;--warn:#e5675a;--hl:#1a2740}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 system-ui,-apple-system,Segoe UI,sans-serif}
+.wrap{max-width:960px;margin:0 auto;padding:28px 16px 72px}
+h1{font-size:32px;line-height:1.2;margin:0 0 8px}
+h2{font-size:23px;line-height:1.3;margin:36px 0 6px}
+h3{font-size:15px;margin:0 0 10px;color:var(--mute);font-weight:600}
+p{margin:0 0 12px}.lead{font-size:19px;color:var(--mute)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin:14px 0}
+.story{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr));gap:14px}
+.story .card{margin:0}.story b{display:block;font-size:13px;color:var(--a);letter-spacing:.04em;text-transform:uppercase;margin-bottom:6px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin:18px 0}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.kpi strong{display:block;font-size:30px;line-height:1.1}.kpi span{color:var(--mute);font-size:15px}
+.chart{position:relative;height:300px}
+.big{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.big .num{font-size:56px;font-weight:700;color:var(--a);line-height:1}
+.seg{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr));gap:12px;margin-top:14px}
+.seg div{border:1px solid var(--line);border-radius:10px;padding:12px 14px;background:var(--card)}
+.seg b{display:block}.seg small{color:var(--mute);display:block;margin-top:2px;font-size:14px}
+.rec{display:grid;gap:12px}.rec .card{margin:0;border-left:5px solid var(--a)}
+.rec b{font-size:18px}.rec .why{color:var(--mute);font-size:15px;margin-top:4px}
+table{width:100%;border-collapse:collapse;font-size:15px}td,th{padding:7px 8px;border-bottom:1px solid var(--line);text-align:right}
+th:first-child,td:first-child{text-align:left}th{color:var(--mute);font-weight:600}
+.note{font-size:14px;color:var(--mute)}
+</style></head><body><div class="wrap">
+
+<h1>¿De quién depende realmente nuestra tienda online?</h1>
+<p class="lead">Análisis de un año de ventas de una tienda online británica de regalos: quién compra, cuándo, y a qué clientes conviene cuidar o recuperar.</p>
+
+<div class="story">
+ <div class="card"><b>La empresa</b>Tienda online del Reino Unido, sin local físico, que vende <u>regalos originales para toda ocasión</u>. Muchos de sus clientes son mayoristas. Usamos sus ventas reales entre el 1 de diciembre de 2010 y el 9 de diciembre de 2011 (datos públicos de la Universidad de California, Irvine; la empresa no revela su nombre).</div>
+ <div class="card"><b>El desafío</b>La tienda vende bien, pero no sabe <u>de quién depende</u>. ¿Todos los clientes aportan lo mismo? ¿Cuándo hay que prepararse? ¿A quién estamos perdiendo? Hay que decidir dónde poner el tiempo y el dinero de marketing.</div>
+ <div class="card"><b>Cómo lo resolvimos</b>1. Limpiamos los datos (quitamos errores, devoluciones y duplicados).<br>2. Los ordenamos en una base de datos.<br>3. Agrupamos a los clientes según <u>cuándo compraron por última vez, cuántas veces y cuánto gastaron</u>.<br>4. Medimos cuántos clientes vuelven.</div>
+</div>
+
+<div class="kpis" id="kpis"></div>
+
+<h2 id="t1"></h2>
+<p id="p1"></p>
+<div class="card"><h3>Porcentaje de clientes y porcentaje de ventas de cada grupo</h3><div class="chart"><canvas id="c_seg"></canvas></div></div>
+<div class="seg" id="seg"></div>
+
+<h2 id="t2"></h2>
+<p id="p2"></p>
+<div class="card"><h3>Ventas de cada mes (miles de libras)</h3><div class="chart"><canvas id="c_month"></canvas></div>
+<p class="note">En gris, diciembre de 2011: los datos llegan solo hasta el día 9, por eso parece bajo.</p></div>
+
+<h2 id="t3"></h2>
+<p id="p3"></p>
+<div class="card"><div class="big"><div class="num" id="ret1"></div><div id="ret1t"></div></div>
+<div class="chart" style="height:240px;margin-top:14px"><canvas id="c_ret"></canvas></div>
+<h3 style="margin-top:8px">De cada 100 clientes nuevos, cuántos compran de nuevo en cada mes posterior a su primera compra</h3></div>
+
+<h2>¿Dónde y qué se vende?</h2>
+<div class="card" id="geo"></div>
+<div class="card"><h3>Los 10 productos que más dinero dejaron</h3><div id="prod"></div></div>
+
+<h2>Qué recomendamos hacer</h2>
+<div class="rec" id="rec"></div>
+
+<h2>Lo que hay que tener en cuenta</h2>
+<div class="card note" id="lim"></div>
+<p class="note">Fuente de los datos: Online Retail (UCI Machine Learning Repository). Análisis hecho con Python y SQL. Todas las cifras son ventas netas (sin devoluciones) de clientes identificados.</p>
+</div>
+
+<script>
+const D = {"kpis": {"revenue": 8342688.0, "orders": 18265, "customers": 4322, "aov": 456.76, "uk_share": 82.4, "top20_share": 73.8, "repeat_rate": 65.2}, "calidad": {"filas_originales": 541909, "duplicados_eliminados": 5268, "cancelaciones": 9251, "ventas_anuladas_por_cancelacion": 3167, "cantidad_o_precio_invalido": 2511, "codigos_no_producto": 2227, "sin_customer_id": 131418, "filas_limpias": 388067, "porcentaje_conservado": 71.6}, "monthly": [{"month": "2010-12", "revenue": 552743.07, "orders": 1381, "customers": 882, "partial": false}, {"month": "2011-01", "revenue": 454006.58, "orders": 967, "customers": 734, "partial": false}, {"month": "2011-02", "revenue": 438335.19, "orders": 987, "customers": 756, "partial": false}, {"month": "2011-03", "revenue": 573089.78, "orders": 1304, "customers": 969, "partial": false}, {"month": "2011-04", "revenue": 449683.6, "orders": 1127, "customers": 848, "partial": false}, {"month": "2011-05", "revenue": 651562.24, "orders": 1533, "customers": 1051, "partial": false}, {"month": "2011-06", "revenue": 643920.45, "orders": 1377, "customers": 988, "partial": false}, {"month": "2011-07", "revenue": 580928.4, "orders": 1313, "customers": 944, "partial": false}, {"month": "2011-08", "revenue": 630341.64, "orders": 1260, "customers": 930, "partial": false}, {"month": "2011-09", "revenue": 927853.79, "orders": 1729, "customers": 1254, "partial": false}, {"month": "2011-10", "revenue": 971992.44, "orders": 1886, "customers": 1356, "partial": false}, {"month": "2011-11", "revenue": 1125519.78, "orders": 2629, "customers": 1658, "partial": false}, {"month": "2011-12", "revenue": 342711.54, "orders": 772, "customers": 612, "partial": true}], "countries": [{"country": "United Kingdom", "revenue": 6871386.0, "customers": 3907, "avg_order_value": 417.0}, {"country": "Netherlands", "revenue": 283480.0, "customers": 9, "avg_order_value": 3048.0}, {"country": "EIRE", "revenue": 247724.0, "customers": 3, "avg_order_value": 979.0}, {"country": "Germany", "revenue": 203600.0, "customers": 94, "avg_order_value": 462.0}, {"country": "France", "revenue": 182006.0, "customers": 87, "avg_order_value": 483.0}, {"country": "Australia", "revenue": 137063.0, "customers": 9, "avg_order_value": 2586.0}, {"country": "Switzerland", "revenue": 52089.0, "customers": 21, "avg_order_value": 1158.0}, {"country": "Spain", "revenue": 51983.0, "customers": 29, "avg_order_value": 604.0}, {"country": "Japan", "revenue": 37314.0, "customers": 8, "avg_order_value": 1964.0}, {"country": "Belgium", "revenue": 36814.0, "customers": 25, "avg_order_value": 376.0}], "top_products": [{"description": "REGENCY CAKESTAND 3 TIER", "units": 11968, "revenue": 137613.85}, {"description": "WHITE HANGING HEART T-LIGHT HOLDER", "units": 34182, "revenue": 93918.3}, {"description": "JUMBO BAG RED RETROSPOT", "units": 45195, "revenue": 83522.4}, {"description": "PARTY BUNTING", "units": 15086, "revenue": 67950.48}, {"description": "ASSORTED COLOUR BIRD ORNAMENT", "units": 35234, "revenue": 56364.02}, {"description": "RABBIT NIGHT LIGHT", "units": 27123, "revenue": 51188.84}, {"description": "CHILLI LIGHTS", "units": 9569, "revenue": 45930.36}, {"description": "PAPER CHAIN KIT 50'S CHRISTMAS", "units": 15184, "revenue": 41543.48}, {"description": "PICNIC BASKET WICKER 60 PIECES", "units": 61, "revenue": 39619.5}, {"description": "BLACK RECORD COVER FRAME", "units": 11389, "revenue": 39000.8}], "segments": [{"segment": "Campeones", "customers": 1123, "revenue": 5758936.6, "avg_recency": 12.6, "avg_frequency": 9.9, "revenue_share": 69.0, "customer_share": 26.0}, {"segment": "Leales", "customers": 825, "revenue": 1157330.8, "avg_recency": 37.4, "avg_frequency": 3.6, "revenue_share": 13.9, "customer_share": 19.1}, {"segment": "En riesgo", "customers": 644, "revenue": 830783.3, "avg_recency": 148.4, "avg_frequency": 3.4, "revenue_share": 10.0, "customer_share": 14.9}, {"segment": "Hibernando", "customers": 1086, "revenue": 378456.2, "avg_recency": 217.2, "avg_frequency": 1.1, "revenue_share": 4.5, "customer_share": 25.1}, {"segment": "Necesitan atención", "customers": 337, "revenue": 125538.4, "avg_recency": 51.1, "avg_frequency": 1.1, "revenue_share": 1.5, "customer_share": 7.8}, {"segment": "Nuevos / prometedores", "customers": 307, "revenue": 91643.2, "avg_recency": 17.2, "avg_frequency": 1.2, "revenue_share": 1.1, "customer_share": 7.1}], "retention": {"cohorts": ["2010-12", "2011-01", "2011-02", "2011-03", "2011-04", "2011-05", "2011-06", "2011-07", "2011-08", "2011-09", "2011-10", "2011-11", "2011-12"], "values": [[100.0, 36.4, 32.3, 38.2, 35.8, 39.8, 36.2, 34.7, 35.3, 39.3, 37.3, 50.2], [100.0, 21.8, 26.9, 23.2, 32.2, 28.8, 25.2, 24.0, 30.0, 32.9, 36.8, 11.9], [100.0, 18.6, 18.6, 28.3, 27.0, 24.4, 25.5, 27.0, 24.7, 30.4, 6.8, null], [100.0, 14.4, 24.9, 19.3, 22.4, 16.7, 26.4, 23.1, 28.0, 8.9, null, null], [100.0, 21.3, 20.3, 21.0, 19.7, 23.0, 21.3, 26.0, 7.3, null, null, null], [100.0, 19.4, 17.3, 17.3, 20.8, 23.0, 26.5, 9.2, null, null, null, null], [100.0, 17.2, 15.6, 26.6, 23.0, 32.4, 9.4, null, null, null, null, null], [100.0, 17.2, 20.4, 22.6, 27.4, 11.3, null, null, null, null, null, null], [100.0, 20.0, 24.1, 24.7, 12.4, null, null, null, null, null, null, null], [100.0, 23.6, 30.4, 11.5, null, null, null, null, null, null, null, null], [100.0, 23.7, 11.5, null, null, null, null, null, null, null, null, null], [100.0, 11.2, null, null, null, null, null, null, null, null, null, null], [100.0, null, null, null, null, null, null, null, null, null, null, null]]}, "retencion_media": [{"mes": 1, "pct": 19.7}, {"mes": 2, "pct": 22.1}, {"mes": 3, "pct": 22.9}, {"mes": 4, "pct": 24.6}, {"mes": 5, "pct": 24.7}, {"mes": 6, "pct": 25.0}, {"mes": 7, "pct": 25.0}, {"mes": 8, "pct": 27.6}]};                         // resultados del análisis
+const num = (n, d = 0) => n.toLocaleString('es-ES', {maximumFractionDigits: d, minimumFractionDigits: d});
+const libras = n => '£' + num(n);
+const nombreMes = m => ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'][+m.slice(5) - 1] + ' ' + m.slice(2, 4);
+const $ = id => document.getElementById(id);
+
+// Nombres sencillos para los grupos de clientes (en el análisis se llaman Campeones, Leales, etc.)
+const GRUPOS = {
+ 'Campeones':            ['Clientes estrella',          'Compran seguido y compraron hace muy poco.'],
+ 'Leales':               ['Clientes fieles',            'Compran con regularidad y siguen activos.'],
+ 'En riesgo':            ['Clientes que se alejan',     'Compraban bastante, pero llevan meses sin volver.'],
+ 'Hibernando':           ['Clientes dormidos',          'Compraron una o dos veces y hace mucho que no vuelven.'],
+ 'Necesitan atención':   ['Clientes ocasionales',       'Compran poco y no muy recientemente.'],
+ 'Nuevos / prometedores':['Clientes nuevos',            'Llegaron hace poco y han comprado pocas veces.']
+};
+const seg = D.segments.map(s => ({...s, nombre: GRUPOS[s.segment][0], desc: GRUPOS[s.segment][1]}));
+const grupo = k => seg.find(s => s.segment === k);
+const k = D.kpis, estrella = grupo('Campeones'), alejan = grupo('En riesgo'), dormidos = grupo('Hibernando');
+const mes = Object.fromEntries(D.monthly.map(m => [m.month, m.revenue]));
+const r1 = D.retencion_media.find(r => r.mes === 1).pct;
+const uk = D.countries.find(c => c.country === 'United Kingdom');
+
+// Cifras destacadas
+$('kpis').innerHTML = [
+ [num(k.revenue / 1e6, 1) + ' M£', 'vendidos en el período'],
+ [num(k.customers), 'clientes distintos'],
+ [num(k.orders), 'pedidos realizados'],
+ [libras(k.aov), 'gasto medio por pedido']
+].map(([v, l]) => `<div class="kpi"><strong>${v}</strong><span>${l}</span></div>`).join('');
+
+// Sección 1: concentración de clientes
+$('t1').textContent = `Pocos clientes sostienen casi todo el negocio`;
+$('p1').innerHTML = `Los <b>${num(estrella.customers)} “clientes estrella”</b> son solo el <b>${num(estrella.customer_share)}%</b> de los clientes, pero generan el <b>${num(estrella.revenue_share)}%</b> de las ventas. Dicho de otra forma: si perdiéramos a este grupo, las ventas se reducirían a menos de la mitad. En cambio, los <b>${num(dormidos.customers)} clientes dormidos</b> son el ${num(dormidos.customer_share)}% de la base y aportan apenas el ${num(dormidos.revenue_share)}%.`;
+$('seg').innerHTML = seg.map(s => `<div><b>${s.nombre}</b><span>${num(s.customers)} clientes · ${libras(s.revenue)}</span><small>${s.desc}${s.segment==='En riesgo' ? ' Llevan en promedio ' + num(s.avg_recency) + ' días sin comprar.' : ''}</small></div>`).join('');
+
+// Sección 2: estacionalidad
+$('t2').textContent = `Las ventas se disparan en otoño`;
+$('p2').innerHTML = `Entre septiembre y noviembre la tienda vende mucho más que el resto del año. En <b>noviembre de 2011</b> se vendieron <b>${libras(mes['2011-11'])}</b>, más del doble que en febrero (${libras(mes['2011-02'])}). Es la temporada de compras para las fiestas, y conviene llegar preparados.`;
+
+// Sección 3: retención
+$('t3').textContent = `La mayoría de los clientes nuevos no vuelve`;
+$('p3').innerHTML = `Cuando alguien compra por primera vez, <b>solo uno de cada cinco vuelve a comprar al mes siguiente</b>. Conseguir esa segunda compra es una de las formas más baratas de hacer crecer las ventas.`;
+$('ret1').textContent = num(r1) + '%';
+$('ret1t').innerHTML = `de los clientes nuevos <b>vuelve a comprar al mes siguiente</b>.<br><span class="note">Aun así, ${num(k.repeat_rate)}% de todos los clientes compró más de una vez a lo largo del año.</span>`;
+
+// Dónde y qué se vende
+$('geo').innerHTML = `<h3>Dónde se vende</h3><p>El <b>${num(k.uk_share)}%</b> de las ventas viene del Reino Unido. Fuera de allí hay pocos clientes, pero algunos son mayoristas que compran mucho: por ejemplo, los 9 clientes de Países Bajos gastan unas <b>${libras(D.countries.find(c => c.country==='Netherlands').avg_order_value)}</b> por pedido, contra ${libras(uk.avg_order_value)} en el Reino Unido.</p>`;
+$('prod').innerHTML = '<table><tr><th>Producto</th><th>Unidades</th><th>Ventas</th></tr>' + D.top_products.map(p => `<tr><td>${p.description.charAt(0) + p.description.slice(1).toLowerCase()}</td><td>${num(p.units)}</td><td>${libras(p.revenue)}</td></tr>`).join('') + '</table>';
+
+// Recomendaciones
+const recs = [
+ ['Cuidar a los clientes estrella', `Son ${num(estrella.customers)} clientes que aportan el ${num(estrella.revenue_share)}% de las ventas. Un trato preferente (atención directa, avisos de novedades, condiciones especiales) protege lo más valioso del negocio.`],
+ ['Recuperar a los clientes que se alejan', `Hay ${num(alejan.customers)} clientes que ya compraron varias veces (${libras(alejan.revenue)} en total) y llevan unos ${num(alejan.avg_recency)} días sin volver. Un mensaje personalizado ahora es mucho más barato que conseguir clientes nuevos.`],
+ ['Prepararse para el otoño', `Las ventas empiezan a subir en septiembre. Planificar stock y campañas desde agosto evita quedarse sin producto en los meses más fuertes.`],
+ ['Lograr la segunda compra', `Cuatro de cada cinco clientes nuevos no vuelven al mes siguiente. Una oferta o un recordatorio tras la primera compra puede cambiar eso.`],
+ ['Explorar mayoristas en el extranjero', `Pocos clientes fuera del Reino Unido hacen pedidos muy grandes. Es una hipótesis que conviene probar con una acción comercial pequeña antes de invertir más.`]
+];
+$('rec').innerHTML = recs.map(([t, w], i) => `<div class="card"><b>${i + 1}. ${t}</b><div class="why">${w}</div></div>`).join('');
+
+// Límites
+const q = D.calidad;
+$('lim').innerHTML = `<ul style="margin:0;padding-left:20px"><li>Se analizaron ${num(q.filas_limpias)} de ${num(q.filas_originales)} líneas de venta (${num(q.porcentaje_conservado, 1)}%). La mayor parte de lo descartado (${num(q.sin_customer_id)} líneas) no tenía cliente identificado, y sin eso no se puede estudiar el comportamiento de cada cliente.</li><li>También se quitaron duplicados, devoluciones, ventas anuladas y cargos que no son productos (envíos, comisiones).</li><li>Es un solo año de datos y diciembre de 2011 está incompleto; las conclusiones sobre estacionalidad se basan en una única temporada.</li><li>Los grupos de clientes muestran asociaciones, no causas: las recomendaciones son hipótesis a probar.</li></ul>`;
+
+// ----- Gráficos -----
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+let charts = [];
+function dibujar() {
+ charts.forEach(c => c.destroy()); charts = [];
+ const A = css('--a'), S = css('--soft');
+ Chart.defaults.color = css('--mute'); Chart.defaults.borderColor = css('--line'); Chart.defaults.font.size = 13;
+ const base = {maintainAspectRatio: false, animation: false};
+ const orden = [...seg].sort((a, b) => b.revenue_share - a.revenue_share);
+ charts.push(new Chart($('c_seg'), {type: 'bar',
+  data: {labels: orden.map(s => s.nombre), datasets: [
+   {label: '% de los clientes', data: orden.map(s => s.customer_share), backgroundColor: S},
+   {label: '% de las ventas', data: orden.map(s => s.revenue_share), backgroundColor: A}]},
+  options: {...base, indexAxis: 'y', plugins: {legend: {position: 'bottom'}, tooltip: {callbacks: {label: c => `${c.dataset.label}: ${num(c.raw)}%`}}}, scales: {x: {ticks: {callback: v => v + '%'}}}}}));
+ charts.push(new Chart($('c_month'), {type: 'bar',
+  data: {labels: D.monthly.map(m => nombreMes(m.month)), datasets: [{data: D.monthly.map(m => m.revenue / 1e3),
+   backgroundColor: D.monthly.map(m => m.partial ? S : A)}]},
+  options: {...base, plugins: {legend: {display: false}, tooltip: {callbacks: {label: c => '£' + num(c.raw) + ' mil'}}}}}));
+ charts.push(new Chart($('c_ret'), {type: 'bar',
+  data: {labels: D.retencion_media.map(r => 'Mes ' + r.mes), datasets: [{data: D.retencion_media.map(r => r.pct), backgroundColor: A}]},
+  options: {...base, plugins: {legend: {display: false}, tooltip: {callbacks: {label: c => num(c.raw) + ' de cada 100'}}}, scales: {y: {beginAtZero: true, title: {display: true, text: 'de cada 100 clientes'}}}}}));
+}
+dibujar();
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change', dibujar);
+</script></body></html>

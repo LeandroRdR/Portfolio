@@ -1,0 +1,486 @@
+{
+ "kpis": {
+  "revenue": 8342688.0,
+  "orders": 18265,
+  "customers": 4322,
+  "aov": 456.76,
+  "uk_share": 82.4,
+  "top20_share": 73.8,
+  "repeat_rate": 65.2
+ },
+ "calidad": {
+  "filas_originales": 541909,
+  "duplicados_eliminados": 5268,
+  "cancelaciones": 9251,
+  "ventas_anuladas_por_cancelacion": 3167,
+  "cantidad_o_precio_invalido": 2511,
+  "codigos_no_producto": 2227,
+  "sin_customer_id": 131418,
+  "filas_limpias": 388067,
+  "porcentaje_conservado": 71.6
+ },
+ "monthly": [
+  {
+   "month": "2010-12",
+   "revenue": 552743.07,
+   "orders": 1381,
+   "customers": 882,
+   "partial": false
+  },
+  {
+   "month": "2011-01",
+   "revenue": 454006.58,
+   "orders": 967,
+   "customers": 734,
+   "partial": false
+  },
+  {
+   "month": "2011-02",
+   "revenue": 438335.19,
+   "orders": 987,
+   "customers": 756,
+   "partial": false
+  },
+  {
+   "month": "2011-03",
+   "revenue": 573089.78,
+   "orders": 1304,
+   "customers": 969,
+   "partial": false
+  },
+  {
+   "month": "2011-04",
+   "revenue": 449683.6,
+   "orders": 1127,
+   "customers": 848,
+   "partial": false
+  },
+  {
+   "month": "2011-05",
+   "revenue": 651562.24,
+   "orders": 1533,
+   "customers": 1051,
+   "partial": false
+  },
+  {
+   "month": "2011-06",
+   "revenue": 643920.45,
+   "orders": 1377,
+   "customers": 988,
+   "partial": false
+  },
+  {
+   "month": "2011-07",
+   "revenue": 580928.4,
+   "orders": 1313,
+   "customers": 944,
+   "partial": false
+  },
+  {
+   "month": "2011-08",
+   "revenue": 630341.64,
+   "orders": 1260,
+   "customers": 930,
+   "partial": false
+  },
+  {
+   "month": "2011-09",
+   "revenue": 927853.79,
+   "orders": 1729,
+   "customers": 1254,
+   "partial": false
+  },
+  {
+   "month": "2011-10",
+   "revenue": 971992.44,
+   "orders": 1886,
+   "customers": 1356,
+   "partial": false
+  },
+  {
+   "month": "2011-11",
+   "revenue": 1125519.78,
+   "orders": 2629,
+   "customers": 1658,
+   "partial": false
+  },
+  {
+   "month": "2011-12",
+   "revenue": 342711.54,
+   "orders": 772,
+   "customers": 612,
+   "partial": true
+  }
+ ],
+ "countries": [
+  {
+   "country": "United Kingdom",
+   "revenue": 6871386.0,
+   "customers": 3907,
+   "avg_order_value": 417.0
+  },
+  {
+   "country": "Netherlands",
+   "revenue": 283480.0,
+   "customers": 9,
+   "avg_order_value": 3048.0
+  },
+  {
+   "country": "EIRE",
+   "revenue": 247724.0,
+   "customers": 3,
+   "avg_order_value": 979.0
+  },
+  {
+   "country": "Germany",
+   "revenue": 203600.0,
+   "customers": 94,
+   "avg_order_value": 462.0
+  },
+  {
+   "country": "France",
+   "revenue": 182006.0,
+   "customers": 87,
+   "avg_order_value": 483.0
+  },
+  {
+   "country": "Australia",
+   "revenue": 137063.0,
+   "customers": 9,
+   "avg_order_value": 2586.0
+  },
+  {
+   "country": "Switzerland",
+   "revenue": 52089.0,
+   "customers": 21,
+   "avg_order_value": 1158.0
+  },
+  {
+   "country": "Spain",
+   "revenue": 51983.0,
+   "customers": 29,
+   "avg_order_value": 604.0
+  },
+  {
+   "country": "Japan",
+   "revenue": 37314.0,
+   "customers": 8,
+   "avg_order_value": 1964.0
+  },
+  {
+   "country": "Belgium",
+   "revenue": 36814.0,
+   "customers": 25,
+   "avg_order_value": 376.0
+  }
+ ],
+ "top_products": [
+  {
+   "description": "REGENCY CAKESTAND 3 TIER",
+   "units": 11968,
+   "revenue": 137613.85
+  },
+  {
+   "description": "WHITE HANGING HEART T-LIGHT HOLDER",
+   "units": 34182,
+   "revenue": 93918.3
+  },
+  {
+   "description": "JUMBO BAG RED RETROSPOT",
+   "units": 45195,
+   "revenue": 83522.4
+  },
+  {
+   "description": "PARTY BUNTING",
+   "units": 15086,
+   "revenue": 67950.48
+  },
+  {
+   "description": "ASSORTED COLOUR BIRD ORNAMENT",
+   "units": 35234,
+   "revenue": 56364.02
+  },
+  {
+   "description": "RABBIT NIGHT LIGHT",
+   "units": 27123,
+   "revenue": 51188.84
+  },
+  {
+   "description": "CHILLI LIGHTS",
+   "units": 9569,
+   "revenue": 45930.36
+  },
+  {
+   "description": "PAPER CHAIN KIT 50'S CHRISTMAS",
+   "units": 15184,
+   "revenue": 41543.48
+  },
+  {
+   "description": "PICNIC BASKET WICKER 60 PIECES",
+   "units": 61,
+   "revenue": 39619.5
+  },
+  {
+   "description": "BLACK RECORD COVER FRAME",
+   "units": 11389,
+   "revenue": 39000.8
+  }
+ ],
+ "segments": [
+  {
+   "segment": "Campeones",
+   "customers": 1123,
+   "revenue": 5758936.6,
+   "avg_recency": 12.6,
+   "avg_frequency": 9.9,
+   "revenue_share": 69.0,
+   "customer_share": 26.0
+  },
+  {
+   "segment": "Leales",
+   "customers": 825,
+   "revenue": 1157330.8,
+   "avg_recency": 37.4,
+   "avg_frequency": 3.6,
+   "revenue_share": 13.9,
+   "customer_share": 19.1
+  },
+  {
+   "segment": "En riesgo",
+   "customers": 644,
+   "revenue": 830783.3,
+   "avg_recency": 148.4,
+   "avg_frequency": 3.4,
+   "revenue_share": 10.0,
+   "customer_share": 14.9
+  },
+  {
+   "segment": "Hibernando",
+   "customers": 1086,
+   "revenue": 378456.2,
+   "avg_recency": 217.2,
+   "avg_frequency": 1.1,
+   "revenue_share": 4.5,
+   "customer_share": 25.1
+  },
+  {
+   "segment": "Necesitan atención",
+   "customers": 337,
+   "revenue": 125538.4,
+   "avg_recency": 51.1,
+   "avg_frequency": 1.1,
+   "revenue_share": 1.5,
+   "customer_share": 7.8
+  },
+  {
+   "segment": "Nuevos / prometedores",
+   "customers": 307,
+   "revenue": 91643.2,
+   "avg_recency": 17.2,
+   "avg_frequency": 1.2,
+   "revenue_share": 1.1,
+   "customer_share": 7.1
+  }
+ ],
+ "retention": {
+  "cohorts": [
+   "2010-12",
+   "2011-01",
+   "2011-02",
+   "2011-03",
+   "2011-04",
+   "2011-05",
+   "2011-06",
+   "2011-07",
+   "2011-08",
+   "2011-09",
+   "2011-10",
+   "2011-11",
+   "2011-12"
+  ],
+  "values": [
+   [
+    100.0,
+    36.4,
+    32.3,
+    38.2,
+    35.8,
+    39.8,
+    36.2,
+    34.7,
+    35.3,
+    39.3,
+    37.3,
+    50.2
+   ],
+   [
+    100.0,
+    21.8,
+    26.9,
+    23.2,
+    32.2,
+    28.8,
+    25.2,
+    24.0,
+    30.0,
+    32.9,
+    36.8,
+    11.9
+   ],
+   [
+    100.0,
+    18.6,
+    18.6,
+    28.3,
+    27.0,
+    24.4,
+    25.5,
+    27.0,
+    24.7,
+    30.4,
+    6.8,
+    null
+   ],
+   [
+    100.0,
+    14.4,
+    24.9,
+    19.3,
+    22.4,
+    16.7,
+    26.4,
+    23.1,
+    28.0,
+    8.9,
+    null,
+    null
+   ],
+   [
+    100.0,
+    21.3,
+    20.3,
+    21.0,
+    19.7,
+    23.0,
+    21.3,
+    26.0,
+    7.3,
+    null,
+    null,
+    null
+   ],
+   [
+    100.0,
+    19.4,
+    17.3,
+    17.3,
+    20.8,
+    23.0,
+    26.5,
+    9.2,
+    null,
+    null,
+    null,
+    null
+   ],
+   [
+    100.0,
+    17.2,
+    15.6,
+    26.6,
+    23.0,
+    32.4,
+    9.4,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   [
+    100.0,
+    17.2,
+    20.4,
+    22.6,
+    27.4,
+    11.3,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   [
+    100.0,
+    20.0,
+    24.1,
+    24.7,
+    12.4,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   [
+    100.0,
+    23.6,
+    30.4,
+    11.5,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   [
+    100.0,
+    23.7,
+    11.5,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   [
+    100.0,
+    11.2,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   [
+    100.0,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ]
+  ]
+ }
+}
