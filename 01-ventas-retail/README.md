@@ -6,7 +6,7 @@ Análisis de un año de ventas de una tienda online británica de regalos: quié
 **Herramientas:** Python (pandas, matplotlib) · SQL (SQLite) · HTML/JavaScript (Chart.js).
 
 📖 **Para leer sin tecnicismos:** [LA_HISTORIA_DEL_PROYECTO.md](LA_HISTORIA_DEL_PROYECTO.md) (empresa, desafío, cómo se resolvió y recomendaciones).
-📊 **Dashboard:** abre `dashboard.html` en el navegador.
+📊 **Dashboard en vivo:** [https://leandrordr.github.io/Portfolio/01-ventas-retail/dashboard.html](https://leandrordr.github.io/Portfolio/01-ventas-retail/dashboard.html)
 
 ## Hallazgos
 - El **26 %** de los clientes ("Campeones") genera el **69 %** de los ingresos.

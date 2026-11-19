@@ -6,7 +6,7 @@ Hola, soy **Leandro Rodriguez del Rio**. Este repositorio reúne mis proyectos d
 
 | # | Proyecto | Pregunta que responde | Herramientas | |
 |---|---|---|---|---|
-| 1 | **[Ventas y segmentación de clientes](01-ventas-retail/)** | ¿De quién depende una tienda online, cuándo vende más y a qué clientes conviene recuperar? | Python · pandas · SQL (SQLite) · matplotlib · Chart.js | [Historia](01-ventas-retail/LA_HISTORIA_DEL_PROYECTO.md) · [Código](01-ventas-retail/analysis.py) |
+| 1 | **[Ventas y segmentación de clientes](01-ventas-retail/)** | ¿De quién depende una tienda online, cuándo vende más y a qué clientes conviene recuperar? | Python · pandas · SQL (SQLite) · matplotlib · Chart.js | [**Dashboard**](https://leandrordr.github.io/Portfolio/01-ventas-retail/dashboard.html) · [Historia](01-ventas-retail/LA_HISTORIA_DEL_PROYECTO.md) · [Código](01-ventas-retail/analysis.py) |
 
 *Más proyectos próximamente.*
 
